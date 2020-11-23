@@ -10,18 +10,25 @@ import java.util.*;
    Scanner scan=new Scanner(System.in);
    
    String s_item[]={"pen","pencil","Stepler","A4_paper","note_book"};// s_item 
-   int pen_price[]={5,10,20,50};//pen_name
+   
+
+   String pen_com[]={"Natraj","montex","balaji","supra"};
+   int pen_price[]={5,10,20,50};//pen_price
    int Qty_of_pen[]={10,500,60,320}; //qty_pen
   
-  int pencil_price[]={5,10,20};
+   String pencil_com[]={"natraj","apsra","first","boskey"};
+   int pencil_price[]={5,10,20};
    int Qty_of_pencil[]={10,500,320};
 
+   String stepler_com[]={"switch","speed","click"};    
    int stepler_price[]={15,20,50,250};
    int Qty_of_stepler[]={100,500,600,3020};
-   
+    
+   String A4_paper_com[]={"cycle","smoth","pages"};
    int A4_paper_price[]={50,100,200,500};
    int Qty_of_A4_paper[]={10,500,600,320};
 
+   String note_book_com[]={"class_mate","notebook","pooja","rajshree"};
    int note_book_price[]={2,5,10,20,40,50};
    int Qty_of_note_book[]={10,50,60,13,120,20};
 
@@ -35,20 +42,7 @@ import java.util.*;
         
        System.out.println(".........................wellcome..............................");
         
-      /*
-       
-           System.out.println("\n\n\n\n\n");
-           System.out.println("enter the no_of_ item");
-            int no_item=scan.nextInt();
-   String item[]=new item[no_item];
-          for(int t=0;t<no_item;t++)
-          {
-             item[t]=scan.next();
-          }
-         
-
-
-    */
+     
    } 
   
 
@@ -87,35 +81,35 @@ import java.util.*;
                       System.out.println("to");
                       range2=scan.nextInt();
                       stoke_cheak(s_item[0]);
-                      range(range1,range2,pen_price,Qty_of_pen,a);
+                      range(range1,range2,pen_price,pen_com,Qty_of_pen,a);
                       break;
             case 1:  System.out.println("enter the range");
 	                      range1=scan.nextInt();
                       System.out.println("to");
                       range2=scan.nextInt();
                       stoke_cheak(s_item[1]);
-                      range(range1,range2,pencil_price, Qty_of_pencil,a);
+                      range(range1,range2,pencil_price,pencil_com,Qty_of_pencil,a);
                       break;
             case 2:  System.out.println("enter the range");
                       range1=scan.nextInt();
                       System.out.println("to");
                       range2=scan.nextInt();
                       stoke_cheak(s_item[2]);
-                      range(range1,range2,stepler_price, Qty_of_stepler,a);
+                      range(range1,range2,stepler_price,stepler_com, Qty_of_stepler,a);
                       break;
             case 3:  System.out.println("enter the range");
                       range1=scan.nextInt();
                       System.out.println("to");
                       range2=scan.nextInt();
                       stoke_cheak(s_item[3]);
-                      range(range1,range2,A4_paper_price, Qty_of_A4_paper,a);
+                      range(range1,range2,A4_paper_price,A4_paper_com,Qty_of_A4_paper,a);
                       break; 
             case 4: System.out.println("enter the range");
                       range1=scan.nextInt();
                       System.out.println("to");
                       range2=scan.nextInt();
                       stoke_cheak(s_item[4]);
-                      range(range1,range2,note_book_price, Qty_of_note_book,a);
+                      range(range1,range2,note_book_price,note_book_com,Qty_of_note_book,a);
                       break;
             case 5: stoke_show();
                     break;
@@ -150,18 +144,18 @@ import java.util.*;
    }
 
 // RANGE COMPARE
-  public void range(int x,int y, int []a,int []b,int j)
+  public void range(int x,int y, int []a,String c[],int []b,int j)
    {
      System.out.println(" various price of your product given range");
     System.out.println("");
-    System.out.println("price \t\t\t  Qty ");
+    System.out.println("company name \t\t  price \t\t  Qty\n ");
      for(int i=0;i<a.length;i++)
      {
        
        if(x<=a[i])
        {
           
-         System.out.println(" " + a[i] + "rs" + "\t\t\t" + b[i]);
+         System.out.println(c[i] + "\t\t\t " + a[i] + "rs" + "\t\t\t" + b[i]+"\n");
        }
        if(a[i]>y)
          {
