@@ -1,16 +1,18 @@
 package project;  // PACKAGE NAME    
 import java.text.SimpleDateFormat;  
 import java.util.*;
+import java.io.*;
 
 
  class Stesh
 {
-   // INPUT OBJECT.
-    
+   // INPUT OBJECT
+   
+
+   
    Scanner scan=new Scanner(System.in);
    
    String s_item[]={"pen","pencil","Stepler","A4_paper","note_book"};// s_item 
-   
 
    String pen_com[]={"Natraj","montex","balaji","supra"};
    int pen_price[]={5,10,20,50};//pen_price
@@ -48,30 +50,92 @@ import java.util.*;
 
 // ITEM LIST METHOD
    public  void item()
-    {
-        for(int i=0;i<s_item.length;i++)
-        {
-         System.out.println("press "+ i + "for buying  " + s_item[i]);  
-        }
-         System.out.println("press 5 for see stock ");
-         System.out.println("press 6 for exit ");
+     {
+       // throw new ArrayIndexOutoFBoundsException("array is too much ");
+             int i;
+          for( i=0;i<s_item.length;i++)
+           {
+               System.out.println("press "+ i + "for buying  " + s_item[i]);  
+           }
+             System.out.println("press" + i++ + "for see stock ");
+             System.out.println("press"+ i++  +"  for exit ");
          
-       input();
+             input();
     }
     
 // INPUT METHOD
    public void input()
    {
-      int ch;
-      System.out.println("enter the choice");
-      ch=scan.nextInt();
-      
-      sale(ch);
+     
+          file_data(s_item,pen_price,pen_com,Qty_of_pen,pencil_price,pencil_com,Qty_of_pencil,stepler_price,stepler_com, Qty_of_stepler,A4_paper_price
+                    ,A4_paper_com,Qty_of_A4_paper,note_book_price,note_book_com,Qty_of_note_book);
+          System.out.println("enter the choice");
+          int ch=scan.nextInt();
+          sale(ch);   
    }
+  
+//String[]  int []// file handlin methode
+       void file_data(String[]s_item,int []pen_price,String[]pen_com,int []Qty_of_pen,int []pencil_price,String[]pencil_com,int []Qty_of_pencil,int []stepler_price
+                     ,String[]stepler_com,int [] Qty_of_stepler,int []A4_paper_price,String[]A4_paper_com,int []Qty_of_A4_paper,int []note_book_price,String[]note_book_com
+                      ,int []Qty_of_note_book)
+       {
+          try
+          {
+              FileWriter writer=new FileWriter("D:/java minner pro/item.doc");
+            writer.write("NAME_OF _ITEM\t\tCOMPANY\t\tPRICE\t\tQTY\n");
+             for(int b=0;b<s_item.length;b++)
+             {
+                writer.write(s_item[b]);
+               
+                  if(s_item[b]=="pen")
+                    {
+                         for(int a=0;a<pen_com.length;a++)
+                  {
+                     writer.write("\t\t\t\t" + pen_com[a] +"\t\t");
+                     writer.write(pen_price[a]+"\t\t");
+                     writer.write(Qty_of_pen[a] + "\n");
+                   }
+                     
+                    } 
+                
+              
+                    
+                 
+                
+             /*     for(int a=0;a<stepler_com.length;a++)
+                  {
+                     writer.write("\t\t\t\t" + stepler_com[a] +"\t\t");
+                     writer.write(stepler_price[a]+"\t\t");
+                     writer.write(Qty_of_stepler[a] + "\n");
+                   } 
+                
+                   for(int a=0;a<A4_paper_com.length;a++)
+                  {
+                     writer.write("\t\t\t\t" + A4_paper_com[a] +"\t\t");
+                     writer.write(A4_paper_price[a]+"\t\t");
+                     writer.write(Qty_of_A4_paper[a] + "\n");
+                   } 
+              
+                   for(int a=0;a<note_book_com .length;a++)
+                  {
+                     writer.write("\t\t\t\t" + note_book_com[a] +"\t\t");
+                     writer.write(note_book_price[a]+"\t\t");
+                     writer.write(Qty_of_note_book[a] + "\n");
+                   }*/
+              
+           }
+            writer.close();      
+          }
+           catch(Exception e)
+          {
+            
+          }
+      }
 
 // SALE METHOD
     public  void sale(int a)
      {
+
         int range1,range2;
          switch(a)
          {
@@ -119,11 +183,12 @@ import java.util.*;
                     break; 
                       
          }
+       
      }
 
 // STOKE cheaking METHOD
 
-  public void stoke_cheak(String s)
+  public void stoke_cheak(String s)throws ArrayIndexOutOfBoundsException
    {
      for(int i=0;i<s_item.length;i++)
      {
@@ -142,37 +207,75 @@ import java.util.*;
      }
        
    }
+   
+//price vaildation methode overloaded
+    public boolean stoke_cheak(int a[],int b[],int ch1,int qty)
+   {
+      boolean c=true;
+     for(int i=0;i<a.length;i++)
+     {
+          if(a[i]==ch1&&b[i]<=qty)
+          {
+              System.out.println("product is vaild in qty and price");
+              
+          }
+           else
+          {
+            c=false;
+          }
+     }
+      
+      return c;
+   }
 
 // RANGE COMPARE
   public void range(int x,int y, int []a,String c[],int []b,int j)
    {
-     System.out.println(" various price of your product given range");
-    System.out.println("");
-    System.out.println("company name \t\t  price \t\t  Qty\n ");
-     for(int i=0;i<a.length;i++)
-     {
+        try
+        {
+            System.out.println(" various price of your product given range");
+            System.out.println("");
+            System.out.println("company name \t\t  price \t\t  Qty\n ");
+            for(int i=0;i<a.length;i++)
+           {
        
-       if(x<=a[i])
-       {
+              if(x<=a[i])
+             {
           
-         System.out.println(c[i] + "\t\t\t " + a[i] + "rs" + "\t\t\t" + b[i]+"\n");
-       }
-       if(a[i]>y)
-         {
-             break;
-         }
+                System.out.println(c[i] + "\t\t\t " + a[i] + "rs" + "\t\t\t" + b[i]+"\n");
+             }
+             if(a[i]>y)
+             {
+                break;
+             }
 
-     }
-        System.out.println("enter the price");
-       int ch1=scan.nextInt();
-        System.out.println("enter the qty");
-       int qty=scan.nextInt();
-       System.out.println("collect your product............................. ");
-       SimpleDateFormat sdf=new  SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
-        Date date =new Date();
-        System.out.println(" total bill=" + (qty*ch1) +"\t\t\t\t" + "DATE - " + sdf.format(date));
+           }
+                System.out.println("enter the price");
+                  int ch1=scan.nextInt();
+                  System.out.println("enter the qty");
+                  int qty=scan.nextInt();
+                  boolean bol=stoke_cheak(a,b,ch1,qty);
+                       if(bol==true)
+                       {
+                         System.out.println("collect your product............................. ");
+                          SimpleDateFormat sdf=new  SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
+                          Date date =new Date();
+                          System.out.println(" total bill=" + (qty*ch1) +"\t\t\t\t" + "DATE - " + sdf.format(date));
         
-       stoke(qty,stoke,j);
+                           stoke(qty,stoke,j);  
+                       }
+                    else
+                    {
+                      System.out.println("please inter the price and qty in stock ");
+                    }
+                  
+        }
+        catch(Exception e)
+         {
+             System.out.println(e);     
+         }    
+
+        
      
         
    }
